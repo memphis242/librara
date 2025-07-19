@@ -2,6 +2,23 @@
 #include <stdint.h>
 #include <assert.h>
 
+STATIC void StaticArrayPoolInit(void);
+STATIC bool StaticArrayPoolIsInitialized(void);
+
+STATIC struct Vector_S * StaticVectorArenaAlloc(void);
+STATIC void   StaticVectorArenaFree(const struct Vector_S *);
+STATIC bool   StaticVectorIsAlloc(const struct Vector_S *);
+
+STATIC void * StaticArrayAlloc(size_t);
+STATIC void * StaticArrayRealloc(void *, size_t);
+STATIC void   StaticArrayFree(const void *);
+STATIC bool   StaticArrayIsAlloc(const void *);
+
+#elif defined(VEC_USE_BUILT_IN_STATIC_ALLOC)
+   if ( !StaticArrayPoolIsInitialized() ) StaticArrayPoolInit();
+   struct Vector_S * NewVec = StaticVectorArenaAlloc();
+#endif
+
 // Macro constants for the capacity of each free list.
 // The lists are statically sized so that theoretically, the full static array
 // arena can be owned by any single list. This is done because we have to account
