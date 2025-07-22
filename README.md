@@ -12,3 +12,4 @@ Library that implements a memory allocator for a user-provided pool. The allocat
 - Minimalistic interface (small API)
 - Intended for embedded systems, so memory-efficiency is prioritized whenever possible to keep this library lightweight
 - Compile-time configuration allows the end-user to pick which parts of the library they want to include, facilitating smaller library file size
+- "Vizable" - if enabled via the `VIZABLE` compile-time config macro, the pool may be visualized through a socket interface (see example Python script in [`scripts/`](./scripts/)
